@@ -1,0 +1,61 @@
+<style>
+    span {
+        color: red;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div ng-controller="registerCtrl">
+                <form name="registerForm">
+                    <fieldset>
+                        <legend>Personal information:</legend>
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input class="form-control" type="text" name="name" ng-model="name" required ng-minlength="3">
+                            <span ng-show="registerForm.name.$touched && registerForm.name.$error.required">Name field is required</span>
+                            <span ng-show="registerForm.name.$error.minlength">Name must contain at least 3 characters</span>
+                            <span ng-repeat="(key, value) in errors">
+                                <p ng-if="key == 'name'">
+                                    {{value[0]}}
+                                </p>
+                            </span>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input class="form-control" type="email" name="email" ng-model="email" ng-minlength="3" required>
+                            <span ng-show="registerForm.email.$touched && registerForm.email.$error.required">Email field is required</span>
+                            <span ng-show="registerForm.email.$error.minlength">Email must contain at least 3 characters</span>
+                            <span ng-repeat="(key, value) in errors">
+                                <p ng-if="key == 'email'">
+                                    {{value[0]}}
+                                </p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input class="form-control" type="password" name="password" ng-model="password" required ng-minlength="3">
+                            <span ng-show="registerForm.password.$touched && registerForm.password.$error.required">Password field is required</span>
+                            <span ng-show="registerForm.password.$error.minlength">Password must contain at least 3 characters</span>
+                            <span ng-repeat="(key, value) in errors">
+                                <p ng-if="key == 'password'">
+                                    {{value[0]}}
+                                </p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordMatch">Repeat Password:</label>
+                            <input class="form-control" type="password" name="passwordMatch" ng-model="passwordMatch" required match="password">
+                            <span ng-show="registerForm.passwordMatch.$touched && registerForm.passwordMatch.$error.match">Password is not match</span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" ng-click="register()">ok</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

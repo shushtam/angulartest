@@ -1,0 +1,57 @@
+<style>
+    .arrow-up{
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid black;
+        display: inline-block;
+    }
+    .arrow-down{
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 10px solid black;
+        display: inline-block;
+    }
+    th {
+        cursor:pointer;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div ng-controller="sortCtrl">
+                <label for="sortSelect">Sort By:</label>
+                <select ng-model="sortColumn" name="sortSelect">
+                    <option value="+name" selected>Name</option>
+                    <option value="+date">Date</option>
+                    <option value="+gender">Gender</option>
+                    <option value="-salary">Salary DESC</option>
+                </select>
+                <input type="text" placeholder="Search Employee" name="search" ng-model="searchEmployee.name"/>
+                 <input type="checkbox" ng-model="hideSalary"/>Hide Salary
+                <table class="table table-stripped">
+                    <tr>
+                        <th ng-click="sortData('name')">Name
+                            <div ng-class="getSortClass('name')"></div></th>
+                        <th ng-click="sortData('date')">Date
+                            <div ng-class="getSortClass('date')"></div></th>
+                        <th ng-click="sortData('gender')">Gender
+                            <div ng-class="getSortClass('gender')"></div></th>
+                        <th ng-hide="hideSalary" ng-click="sortData('salary')">Salary
+                            <div ng-class="getSortClass('salary')"></div></th>
+                    </tr>
+                    <tr ng-repeat="employee in employees| orderBy:sortColumn:reverseSort|filter:searchEmployee">
+                        <td>{{ employee.name}}</td>
+                        <td>{{ employee.date| date:'yyyy-MM-dd'}}</td>
+                        <td>{{ employee.gender | gender}}</td>
+                        <td ng-hide="hideSalary">{{ employee.salary}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

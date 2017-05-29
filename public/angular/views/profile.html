@@ -1,0 +1,35 @@
+<style>
+    span {
+        color: red;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div ng-controller="profileCtrl">
+                <form name="editForm">
+                    <fieldset>
+                        <legend>Your information:</legend>
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input class="form-control" type="text" name="name" ng-model="name" required ng-minlength="3">
+                            <span ng-show="editForm.name.$touched && editForm.name.$error.required">Name field is required</span>
+                            <span ng-show="editForm.name.$error.minlength">Name must contain at least 3 characters</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input class="form-control" type="email" name="email" ng-model="email" required ng-minlength="3">
+                            <span ng-show="editForm.email.$touched && editForm.email.$error.required">Email field is required</span>
+                            <span ng-show="editForm.email.$error.minlength">Email must contain at least 3 characters</span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" ng-click="edit()">edit</button>
+                        </div>
+                        <span>{{ updated}}</span>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

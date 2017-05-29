@@ -1,0 +1,23 @@
+{
+  "name": "public",
+  "authors": [
+    "shushtam <shushotam@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "angular-match": "^1.0.1",
+    "ngDraggable": "^0.1.11"
+  }
+}

@@ -1,0 +1,38 @@
+
+<div class="container" ng-drop="false" ng-drag="false">
+    <div class="row" ng-controller="taskCtrl">
+        <div class="col-md-5 col-md-offset-1">
+            <div >
+                <table class="table table-bordered"  >
+                    <tr>
+                        <th>title</th>
+                    </tr>
+                    <tr ng-repeat="task in tasks"  data-target="{{task.id}}" ng-drop="{{task}}" ng-drop-success="onDropSuccess($data,$event,$target)">
+                        <td style="background-color: honeydew" data-task="{{task.id}}"ng-drag="true" ng-drag-data="{{task}}" ng-drag-success="onDragComplete($data,$event)"><span>{{task.title}}</span>
+                            <a href="" data-link="{{task.id}}" ng-click='editTask(task.id)' style="float:right">edit</a>
+                        
+
+                        <button  style="display:none;float:right" ng-click='changeTask(task.id)' data-button="{{task.id}}" class="btn btn-success">save</button>
+                       </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <form name="newTaskForm">
+                <fieldset>
+                    <legend>Add new task</legend>
+                    <div class="form-group">
+                        <label for="title">Task Title:</label>
+                        <input class="form-control" type="text" name="taskTitle" ng-model="taskTitle" required>
+                          <span ng-show="newTaskForm.taskTitle.$touched && newTaskForm.taskTitle.$error.required">Title is required</span>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success" ng-click="addTask()">Add</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
